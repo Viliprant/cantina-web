@@ -1,14 +1,10 @@
 import VueRouter from 'vue-router';
 import Home from './components/Home';
-import Onglet_1 from './components/Onglet_1';
-import Onglet_2 from './components/Onglet_2';
-import Onglet_3 from './components/Onglet_3';
+import AddRecipe from './components/AddRecipe';
 
 const routes = [
     { path: '/', component: Home },
-    { path: '/Onglet_1', component: Onglet_1 },
-    { path: '/Onglet_2', component: Onglet_2 },
-    { path: '/Onglet_3', component: Onglet_3 }
+    { path: '/AddRecipe', component: AddRecipe },
  ];
  
  const router = new VueRouter({

@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Squelette APP</a>
+      <a class="navbar-brand align-middle" href="#"><img src="../assets/cantina-logo.png"/><span class="align-middle px-2">Cantina</span></a>
       <button
         class="navbar-toggler"
         type="button"
@@ -14,17 +14,11 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item">
+          <li class="nav-item align-middle">
             <router-link to="/" class="nav-link">Accueil</router-link>
           </li>
-          <li class="nav-item">
-            <router-link to="/Onglet_1" class="nav-link">Onglet 1</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/Onglet_2" class="nav-link">Onglet 2</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/Onglet_3" class="nav-link">Onglet 3</router-link>
+          <li class="nav-item align-middle">
+            <router-link to="/AddRecipe" class="nav-link">Ajouter une recette</router-link>
           </li>
         </ul>
       </div>
