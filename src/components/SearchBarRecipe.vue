@@ -7,7 +7,7 @@
       data-target="#collapseExample"
       aria-expanded="false"
       aria-controls="collapseExample"
-    >Afficher un filtre</button>
+    >Afficher le filtre</button>
     <div class="collapse" id="collapseExample">
       <form class="py-3">
         <div class="form-group">
