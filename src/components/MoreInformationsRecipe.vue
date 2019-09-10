@@ -1,6 +1,6 @@
 <template>
   <div class="container text-light mt-3">
-    <h1>Recette : Dustcrepe</h1>
+    <h1>Recette : {{myRecipe.titre}}</h1>
     <p>Vous avez donc choisi de préparer le plat "Dustcrepe". Remontez vos manches et c'est parti pour de la gastronomie spaciale digne de Star Wars !</p>
     <p
       class="font-italic"
@@ -10,24 +10,24 @@
     <div class="card mb-3 text-dark mt-3">
       <div class="row no-gutters">
         <div class="col-md-4">
-          <img src="http://localhost:9000/images/dustcrepe.jpg" class="card-img maclasse" alt />
+          <img :src="myRecipe.photo || DEFAULT_PHOTO" class="card-img maclasse" alt />
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <h2 class="card-title">Dustcrepe</h2>
-            <p class="card-text">Croustillant menthe, feta et concombre</p>
+            <h2 class="card-title">{{myRecipe.titre}}</h2>
+            <p class="card-text">{{myRecipe.description}}</p>
             <ul class="list-group list-group-flush">
               <li class="list-group-item text-muted">
                 Nombre :
-                <span class="font-weight-bold">test</span>
+                <span class="font-weight-bold">{{myRecipe.personnes | formatNbPersonne}}</span>
               </li>
               <li class="list-group-item text-muted">
                 Difficulté :
-                <span class="font-weight-bold">test</span>
+                <span class="font-weight-bold">{{myRecipe.niveau}}</span>
               </li>
               <li class="list-group-item text-muted">
                 Temps de préparation :
-                <span class="font-weight-bold">test</span>
+                <span class="font-weight-bold">{{myRecipe.tempsPreparation | formatTpsPreparation}}</span>
               </li>
             </ul>
           </div>
@@ -73,17 +73,53 @@
 
     <div class="card mt-3">
       <div class="card-footer text-center">
-        <a href="#" class="btn btn-outline-info mr-2">Modifier</a>
-        <a href="#" class="btn btn-outline-danger">Supprimer</a>
+        <a href="#" class="btn btn-outline-info btn-lg btn-block mr-2">Modifier</a>
+        <a href="#" class="btn btn-outline-danger btn-lg btn-block">Supprimer</a>
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
+import data from "../utilities/data";
+
 export default {
-  name: "MoreInformationsRecipe"
+  name: "MoreInformationsRecipe",
+  data: function() {
+    return {
+      myRecipe: {}
+    };
+  },
+  filters: {
+    formatNbPersonne: function(value) {
+      if (value > 1) {
+        return `${value} personnes`;
+      } else {
+        return `${value} personne`;
+      }
+    },
+    formatTpsPreparation: function(value) {
+      if (value / 60 >= 1) {
+        if (value % 60 == 0) {
+          return `${Math.trunc(value / 60)}h`;
+        }
+        return `${Math.trunc(value / 60)}h${value % 60}min`;
+      } else {
+        return `${value % 60}min`;
+      }
+    }
+  },
+  created: function() {
+    data.getOneRecipe(this.$route.params.id).then(res => {
+      this.myRecipe = res.data;
+    });
+  },
+  computed: {
+    DEFAULT_PHOTO: function(){
+      // require sinon il ne trouve pas la photo
+      return require('../assets/default-image-recipe-Miam.jpg');
+    }
+  }
 };
 </script>
 

@@ -11,7 +11,7 @@
       <li class="list-group-item text-muted">Difficulté : <span class="font-weight-bold">{{detailsRecipe.niveau}}</span></li>
       <li class="list-group-item text-muted">Temps de préparation : <span class="font-weight-bold">{{detailsRecipe.tempsPreparation | formatTpsPreparation}}</span></li>
     </ul>
-    <div class="card-footer">
+    <div class="card-footer text-center">
       <a href="#" class="btn btn-outline-info mr-2">Modifier</a>
       <a href="#" class="btn btn-outline-danger">Supprimer</a>
     </div>
@@ -45,6 +45,9 @@ export default {
     formatTpsPreparation: function(value){
       if(value/60 >= 1)
       {
+        if(value%60 == 0){
+          return `${Math.trunc(value/60)}h`;
+        }
         return `${Math.trunc(value/60)}h${value%60}min`;
       }
       else{

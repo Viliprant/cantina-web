@@ -13,5 +13,14 @@ export default{
             .catch(function (error) {
                 return error;
             })
+    },
+    getOneRecipe : (id) => {
+        return axios.get(`${API_ENDPOINT}/api/recipe/${id}`)
+            .then(function (response) {
+                return response;
+            })
+            .catch(function (error) {
+                return error;
+            })
     }
 }
