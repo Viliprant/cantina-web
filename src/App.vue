@@ -17,4 +17,11 @@ export default {
 </script>
 
 <style>
+  body{
+    background-image: url('./assets/wallpaper-star-wars-background.jpg') !important;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 </style>

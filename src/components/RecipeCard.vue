@@ -2,12 +2,12 @@
   <div class="card card-size">
     <img class="card-img-top" src="../assets/default-image-recipe-Miam.jpg" alt="Card image cap" />
     <div class="card-body">
-      <h5 class="card-title">Titre de la recette</h5>
+      <h5 class="card-title">{{detailsRecipe.titre}}</h5>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item text-muted">Nombre de personne : 2</li>
-      <li class="list-group-item text-muted">Difficulté : Jedi</li>
-      <li class="list-group-item text-muted">Temps de préparation : 15min</li>
+      <li class="list-group-item text-muted"> Nombre : <span class="font-weight-bold">{{detailsRecipe.personnes | formatNbPersonne}}</span></li>
+      <li class="list-group-item text-muted">Difficulté : <span class="font-weight-bold">{{detailsRecipe.niveau}}</span></li>
+      <li class="list-group-item text-muted">Temps de préparation : <span class="font-weight-bold">{{detailsRecipe.tempsPreparation | formatTpsPreparation}}</span></li>
     </ul>
     <div class="card-body">
       <a href="#" class="btn btn-outline-info mr-2">Modifier</a>
@@ -18,12 +18,43 @@
 
 <script>
 export default {
-  name: "RecipeCard"
+  name: "RecipeCard",
+  props: {
+    dataRecipe : {
+      type : Object,
+      required: true
+    }
+  },
+  data: function(){
+    return{
+      detailsRecipe : this.dataRecipe
+    }
+  },
+  filters: {
+    formatNbPersonne: function(value){
+      if(value > 1)
+      {
+        return `${value} personnes`
+      }
+      else{
+        return `${value} personne`
+      }
+    },
+    formatTpsPreparation: function(value){
+      if(value/60 >= 1)
+      {
+        return `${Math.trunc(value/60)}h${value%60}min`;
+      }
+      else{
+        return `${value%60}min`;
+      }
+    }
+  }
 };
 </script>
 
 <style scoped>
 .card-size{
-  width: 15rem;
+  width: 21rem;
 }
 </style>

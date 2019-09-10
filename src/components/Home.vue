@@ -1,17 +1,10 @@
 <template>
   <div class="container py-3">
-    <h1>Liste des recettes</h1>
-    <p>Voici les recettes de bons petits plats !</p>
+    <h1 class="text-white">Liste des recettes</h1>
+    <p class="text-white">Voici les recettes de bons petits plats !</p>
     <SearchBarRecipe />
     <div class="container-card">
-      <RecipeCard class="m-3" />
-      <RecipeCard class="m-3" />
-      <RecipeCard class="m-3" />
-      <RecipeCard class="m-3" />
-      <RecipeCard class="m-3" />
-      <RecipeCard class="m-3" />
-      <RecipeCard class="m-3" />
-      <RecipeCard class="m-3" />
+      <RecipeCard class="m-3" v-for="recipe in listRecipes" :key="recipe.id" :dataRecipe="recipe"/>
     </div>
   </div>
 </template>
@@ -36,7 +29,6 @@ export default {
   created: function() {
     data.getAllRecipes().then(res => {
       this.listRecipes = res.data;
-      console.log(this.listRecipes);
     });
   }
 };
