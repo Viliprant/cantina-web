@@ -27,7 +27,9 @@
               </li>
               <li class="list-group-item text-muted">
                 Temps de préparation :
-                <span class="font-weight-bold">{{myRecipe.tempsPreparation | formatTpsPreparation}}</span>
+                <span
+                  class="font-weight-bold"
+                >{{myRecipe.tempsPreparation | formatTpsPreparation}}</span>
               </li>
             </ul>
           </div>
@@ -41,11 +43,11 @@
       <div class="card">
         <div class="card-body">
           <ul class="list-group list-group-flush">
-            <li class="list-group-item text-muted">patate</li>
-            <li class="list-group-item text-muted">patate</li>
-            <li class="list-group-item text-muted">patate</li>
-            <li class="list-group-item text-muted">patate</li>
-            <li class="list-group-item text-muted">patate</li>
+            <li
+              class="list-group-item text-muted"
+              v-for="(value, name) in myRecipe.ingredients"
+              :key="name"
+            >{{value[0] + ' ' + value[1]}}</li>
           </ul>
         </div>
       </div>
@@ -57,15 +59,11 @@
       <div class="card">
         <div class="card-body">
           <ul class="list-group list-group-flush">
-            <li
-              class="list-group-item text-muted"
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, quos. Cum inventore sint sequi. Esse saepe temporibus molestias nemo hic delectus laboriosam nihil sapiente maxime, quo nobis? Harum, ducimus corrupti?</li>
-            <li
-              class="list-group-item text-muted"
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, quos. Cum inventore sint sequi. Esse saepe temporibus molestias nemo hic delectus laboriosam nihil sapiente maxime, quo nobis? Harum, ducimus corrupti?</li>
-            <li
-              class="list-group-item text-muted"
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, quos. Cum inventore sint sequi. Esse saepe temporibus molestias nemo hic delectus laboriosam nihil sapiente maxime, quo nobis? Harum, ducimus corrupti?</li>
+            <li 
+                class="list-group-item text-muted"
+                v-for="(value, name) in myRecipe.etapes"
+                :key="name"
+            >{{`${name+1}) ${value}`}}</li>
           </ul>
         </div>
       </div>
@@ -115,9 +113,9 @@ export default {
     });
   },
   computed: {
-    DEFAULT_PHOTO: function(){
+    DEFAULT_PHOTO: function() {
       // require sinon il ne trouve pas la photo
-      return require('../assets/default-image-recipe-Miam.jpg');
+      return require("../assets/default-image-recipe-Miam.jpg");
     }
   }
 };
