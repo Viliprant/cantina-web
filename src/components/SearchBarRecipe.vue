@@ -14,7 +14,7 @@
           <!-- Titre -->
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="btn btn-outline-info" id="titre">Titre</span>
+              <span class="btn btn-outline-light" id="titre">Titre</span>
             </div>
             <input
               type="text"
@@ -28,7 +28,7 @@
           <!-- Difficulté -->
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="btn btn-outline-info" id="difficulte">Difficulté</span>
+              <span class="btn btn-outline-light" id="difficulte">Difficulté</span>
             </div>
             <select class="custom-select" aria-label="difficulte" aria-describedby="difficulte">
               <option selected>Tous</option>
@@ -41,7 +41,7 @@
           <!-- Nombre de personne -->
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="btn btn-outline-info" id>Nombre de personne</span>
+              <span class="btn btn-outline-light" id>Nombre de personne</span>
             </div>
             <input type="text" class="form-control" placeholder="3" />
             <input type="text" class="form-control" placeholder="5" />
@@ -50,7 +50,7 @@
           <!-- Temps de préparation -->
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="btn btn-outline-info" id="temps_de_preparation">Temps de préparation</span>
+              <span class="btn btn-outline-light" id="temps_de_preparation">Temps de préparation</span>
             </div>
             <input
               type="text"
@@ -65,7 +65,7 @@
         <!-- Submit Button -->
         <button
           type="button"
-          class="btn btn-outline-info btn-lg btn-block"
+          class="btn btn-outline-light btn-lg btn-block"
         >Lancez la force de la recherche</button>
       </form>
     </div>
@@ -79,9 +79,9 @@ export default {
 </script>
 
 <style scoped>
-.input-group-prepend .btn-outline-info:hover {
+.input-group-prepend .btn-outline-light:hover {
   background-color: inherit;
-  color: #17a2b8;
-  border-color: #17a2b8;
+  color: white;
+  border-color: white;
 }
 </style>

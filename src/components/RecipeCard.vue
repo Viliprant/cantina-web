@@ -5,7 +5,7 @@
       <h5 class="card-title">{{detailsRecipe.titre}}</h5>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item text-muted"> Nombre : <span class="font-weight-bold">{{detailsRecipe.personnes | formatNbPersonne}}</span></li>
+      <li class="list-group-item text-muted">Nombre : <span class="font-weight-bold">{{detailsRecipe.personnes | formatNbPersonne}}</span></li>
       <li class="list-group-item text-muted">Difficulté : <span class="font-weight-bold">{{detailsRecipe.niveau}}</span></li>
       <li class="list-group-item text-muted">Temps de préparation : <span class="font-weight-bold">{{detailsRecipe.tempsPreparation | formatTpsPreparation}}</span></li>
     </ul>
