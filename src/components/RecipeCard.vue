@@ -1,6 +1,6 @@
 <template>
   <div class="card card-size">
-    <img class="card-img-top" src="../assets/default-image-recipe-Miam.jpg" alt="Card image cap" />
+    <img class="card-img-top" :src="detailsRecipe.photo || DEFAULT_PHOTO" :alt="'photo de ' + detailsRecipe.titre" />
     <div class="card-body">
       <h5 class="card-title">{{detailsRecipe.titre}}</h5>
     </div>
@@ -48,6 +48,11 @@ export default {
       else{
         return `${value%60}min`;
       }
+    }
+  },
+  computed: {
+    DEFAULT_PHOTO: function(){
+      return require('../assets/default-image-recipe-Miam.jpg');
     }
   }
 };
