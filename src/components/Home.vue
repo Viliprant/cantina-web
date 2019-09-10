@@ -1,19 +1,45 @@
 <template>
   <div>
-    <div class='container'>
-      <h1>Home</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit minima, praesentium nulla soluta suscipit, provident ullam ipsam qui vero voluptas in, inventore temporibus consequatur non eius minus incidunt sapiente perferendis.</p>
+    <div class="container py-3">
+      <h1>Liste des recettes</h1>
+      <p>Voici les recettes de bons petits plats !</p>
+      <SearchBarRecipe/>
+      <div class="container-card">
+        <RecipeCard class="m-3"/>
+        <RecipeCard class="m-3"/>
+        <RecipeCard class="m-3"/>
+        <RecipeCard class="m-3"/>
+        <RecipeCard class="m-3"/>
+        <RecipeCard class="m-3"/>
+        <RecipeCard class="m-3"/>
+        <RecipeCard class="m-3"/>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import RecipeCard from "./RecipeCard";
+import SearchBarRecipe from "./SearchBarRecipe";
+
 export default {
-  name: 'Home'
-}
+  name: "Home",
+  components: {
+    RecipeCard,
+    SearchBarRecipe
+  },
+  data: function() {
+    return {};
+  }
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.container-card{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 </style>

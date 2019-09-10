@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand align-middle" href="#"><img src="../assets/cantina-logo.png"/><span class="align-middle px-2">Cantina</span></a>
+      <div class="navbar-brand align-middle"><img src="../assets/cantina-logo.png"/><span class="align-middle px-2">Cantina</span></div>
       <button
         class="navbar-toggler"
         type="button"
@@ -33,7 +33,7 @@ export default {
 
 <style scoped>
   .navbar a.router-link-exact-active {
-    color: #128953 !important;
+    color: #17a2b8 !important;
     font-weight: bold !important;
   }
 </style>
