@@ -11,7 +11,8 @@ export default{
                 return response;
             })
             .catch(function (error) {
-                return error;
+                let errMessage = (error.response) ? `${error.response.statusText} : ${error.response.data.message}` : `${error.response.statusText} : ${error.response.data.message}`;
+                return Promise.reject(new Error(errMessage));
             })
     },
     getOneRecipe : (id) => {
@@ -20,7 +21,8 @@ export default{
                 return response;
             })
             .catch(function (error) {
-                return error;
+                let errMessage = (error.response) ? `${error.response.statusText} : ${error.response.data.message}` : `${error.response.statusText} : ${error.response.data.message}`;
+                return Promise.reject(new Error(errMessage));
             })
     }
 }

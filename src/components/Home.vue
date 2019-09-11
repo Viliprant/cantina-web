@@ -31,6 +31,8 @@ export default {
     data.getAllRecipes().then(res => {
       this.listRecipes = res.data;
       this.listRecipesFiltered = res.data;
+    }).catch((error)=>{
+      this.$toasted.error(error.message);
     });
   },
   methods:{

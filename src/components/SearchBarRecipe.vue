@@ -4,11 +4,11 @@
       class="btn btn-info mb-3"
       type="button"
       data-toggle="collapse"
-      data-target="#collapseExample"
+      data-target="#collapse"
       aria-expanded="false"
-      aria-controls="collapseExample"
+      aria-controls="collapse"
     >Afficher le filtre</button>
-    <div class="collapse" id="collapseExample">
+    <div class="collapse" id="collapse">
       <form class="py-3" @submit.prevent="onSearch">
         <div class="form-group">
           <!-- Titre -->
