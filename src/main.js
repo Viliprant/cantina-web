@@ -12,7 +12,9 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 import 'bootstrap-vue/dist/bootstrap-vue.js';
 import Toasted from 'vue-toasted';
  
-Vue.use(Toasted)
+Vue.use(Toasted,{
+  duration: 3000
+})
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 

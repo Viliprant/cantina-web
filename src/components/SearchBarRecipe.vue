@@ -9,7 +9,7 @@
       aria-controls="collapseExample"
     >Afficher le filtre</button>
     <div class="collapse" id="collapseExample">
-      <form class="py-3">
+      <form class="py-3" @submit.prevent="onSearch">
         <div class="form-group">
           <!-- Titre -->
           <div class="input-group mb-3">
@@ -22,6 +22,7 @@
               placeholder="Midi-chlorien"
               aria-label="titre"
               aria-describedby="titre"
+              v-model="parametersSearch.titre"
             />
           </div>
 
@@ -30,11 +31,16 @@
             <div class="input-group-prepend">
               <span class="btn btn-outline-light" id="difficulte">Difficulté</span>
             </div>
-            <select class="custom-select" aria-label="difficulte" aria-describedby="difficulte">
-              <option selected>Tous</option>
-              <option value="1">Padawan</option>
-              <option value="2">Jedi</option>
-              <option value="3">Maitre</option>
+            <select
+              class="custom-select"
+              aria-label="difficulte"
+              aria-describedby="difficulte"
+              v-model="parametersSearch.difficulte"
+            >
+              <option value="Tous" selected>Tous</option>
+              <option value="Padawan">Padawan</option>
+              <option value="Jedi">Jedi</option>
+              <option value="Maitre">Maitre</option>
             </select>
           </div>
 
@@ -43,8 +49,18 @@
             <div class="input-group-prepend">
               <span class="btn btn-outline-light" id>Nombre de personne</span>
             </div>
-            <input type="text" class="form-control" placeholder="3" />
-            <input type="text" class="form-control" placeholder="5" />
+            <input
+              type="text"
+              class="form-control"
+              placeholder="3"
+              v-model="parametersSearch.nbPersonnes[0]"
+            />
+            <input
+              type="text"
+              class="form-control"
+              placeholder="5"
+              v-model="parametersSearch.nbPersonnes[1]"
+            />
           </div>
 
           <!-- Temps de préparation -->
@@ -58,15 +74,17 @@
               placeholder="Veuillez saisir une durée (en minutes)"
               aria-label="temps_de_preparation"
               aria-describedby="temps_de_preparation"
+              v-model="parametersSearch.tpsPreparation"
             />
           </div>
         </div>
 
         <!-- Submit Button -->
-        <button
-          type="button"
+        <input
+          type="submit"
           class="btn btn-outline-light btn-lg btn-block"
-        >Lancez la force de la recherche</button>
+          value="Lancez la force de la recherche"
+        />
       </form>
     </div>
   </div>
@@ -74,7 +92,48 @@
 
 <script>
 export default {
-  name: "SearchBarRecipe"
+  name: "SearchBarRecipe",
+  data: function() {
+    return {
+      parametersSearch: {
+        titre: "",
+        difficulte: "Tous",
+        tpsPreparation: "",
+        nbPersonnes: ["",""]
+      }
+    };
+  },
+  methods: {
+    onSearch: function() {
+      if (this.verifyParameters()) {
+        this.$emit("useFilter", this.parametersSearch); // Envoi l'objet 'parametersSearch' vers le parent via l'événement personnalisé 'useFilter'
+      }
+    },
+    verifyParameters: function() {
+      let validation = true;
+      if (
+        (Number.isNaN(parseInt(this.parametersSearch.nbPersonnes[0])) &&
+          this.parametersSearch.nbPersonnes[0] !== "") ||
+        (Number.isNaN(parseInt(this.parametersSearch.nbPersonnes[1])) &&
+          this.parametersSearch.nbPersonnes[1] !== "")
+      ) {
+        this.$toasted.error(
+          "La valeur pour le nombre de personne est incorrecte, veuillez rentrer un nombre entier positif."
+        );
+        validation = false;
+      }
+      if (
+        Number.isNaN(parseInt(this.parametersSearch.tpsPreparation)) &&
+        this.parametersSearch.tpsPreparation !== ""
+      ) {
+        this.$toasted.error(
+          "La valeur pour le temps de préparation est incorrecte, veuillez rentrer un nombre entier positif."
+        );
+        validation = false;
+      }
+      return validation;
+    }
+  }
 };
 </script>
 
