@@ -56,12 +56,14 @@
     </div>
 
     <!-- Ingrédients Liste -->
-    <div>
+    <div class="mb-3">
       <div class="card">
-        <ul class="list-group list-group-flush">
-          <li class="text-muted">Coucou</li>
-        </ul>
-      </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item text-muted"><span>Coucou</span><input class="float-right btn btn-danger" value="X" type="button"/></li>
+              <li class="list-group-item text-muted"><span>Coucou</span><input class="float-right btn btn-danger" value="X" type="button"/></li>
+              <li class="list-group-item text-muted"><span>Coucou</span><input class="float-right btn btn-danger" value="X" type="button"/></li>
+            </ul>
+          </div>
     </div>
 
     <!-- Etapes Button -->
@@ -78,11 +80,16 @@
     <!-- Etapes Liste -->
     <div class="mb-3">
       <div class="card">
-        <ul class="list-group list-group-flush">
-          <li class="text-muted"><span>Coucou</span><input class="float-right input-group-text align-middle" value="X" type="button"/></li>
-        </ul>
-      </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item text-muted"><span>Coucou</span><input class="float-right btn btn-danger" value="X" type="button"/></li>
+              <li class="list-group-item text-muted"><span>Coucou</span><input class="float-right btn btn-danger" value="X" type="button"/></li>
+              <li class="list-group-item text-muted"><span>Coucou</span><input class="float-right btn btn-danger" value="X" type="button"/></li>
+            </ul>
+          </div>
     </div>
+
+
+      <input type="submit" class="btn btn-outline-info btn-lg btn-block mr-2 mb-3 my-bg-white" value="Ajouter"/>
   </form>
 </template>
 
@@ -92,5 +99,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.my-bg-white{
+  background-color: white;
+}
 </style>
