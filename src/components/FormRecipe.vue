@@ -1,91 +1,96 @@
 <template>
   <form>
-      <!-- Titre -->
-      <div class="form-group">
-        <label for="titre" class="h3">Titre</label>
-        <input
-          type="text"
-          class="form-control"
-          id="titre"
-          placeholder="Ma nouvelle recette"
-        />
-      </div>
-      <!-- Description -->
-      <div class="form-group">
-        <label for="description" class="h3">Description</label>
-        <input
-          type="text"
-          class="form-control"
-          id="description"
-          placeholder="Un plat d'une autre galaxie..."
-        />
-      </div>
+    <!-- Titre Button -->
+    <div class="form-group">
+      <label for="titre" class="h3">Titre</label>
+      <input
+        type="text"
+        class="form-control"
+        id="titre"
+        placeholder="Ma nouvelle recette intergalactique"
+      />
+    </div>
+    <!-- Description Button -->
+    <div class="form-group">
+      <label for="description" class="h3">Description</label>
+      <input
+        type="text"
+        class="form-control"
+        id="description"
+        placeholder="Un plat d'une autre galaxie..."
+      />
+    </div>
 
-      <!-- Nombre de personnes -->
-      <div class="form-group">
-        <label for="nb_personnes" class="h3">Nombre de personnes</label>
-        <input
-          type="number"
-          class="form-control"
-          id="nb_personnes"
-        />
+    <!-- Nombre de personnes Button -->
+    <div class="form-group">
+      <label for="nb_personnes" class="h3">Nombre de personnes</label>
+      <input type="number" class="form-control" id="nb_personnes" />
+    </div>
+
+    <!-- Difficulté Button -->
+    <div class="form-group">
+      <label for="difficulte" class="h3">Difficulté</label>
+      <select class="custom-select" aria-label="difficulte" aria-describedby="difficulte">
+        <option value="Padawan" selected>Padawan</option>
+        <option value="Jedi">Jedi</option>
+        <option value="Maitre">Maitre</option>
+      </select>
+    </div>
+
+    <!-- Temps de préparation Button -->
+    <div class="form-group">
+      <label for="tps_preparation" class="h3">Temps de préparation</label>
+      <input type="number" class="form-control" id="tps_preparation" placeholder="30 (en minutes)" />
+    </div>
+
+    <!-- Ingrédients Button -->
+    <div class="form-group">
+      <label for="tps_preparation" class="h3">Ingrédients</label>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Quantité" />
+        <input type="text" class="form-control" placeholder="Nom de l'ingrédient" />
+        <div class="input-group-append">
+          <input class="input-group-text" type="button" value="Ajouter" />
+        </div>
       </div>
+    </div>
 
-      <!-- Difficulté -->
-      <div class="form-group">
-        <label for="difficulte" class="h3">Difficulté</label>
-        <select
-              class="custom-select"
-              aria-label="difficulte"
-              aria-describedby="difficulte"
-            >
-              <option value="Padawan" selected>Padawan</option>
-              <option value="Jedi">Jedi</option>
-              <option value="Maitre">Maitre</option>
-            </select>
+    <!-- Ingrédients Liste -->
+    <div>
+      <div class="card">
+        <ul class="list-group list-group-flush">
+          <li class="text-muted">Coucou</li>
+        </ul>
       </div>
+    </div>
 
-      <!-- Temps de préparation -->
-      <div class="form-group">
-        <label for="tps_preparation" class="h3">Temps de préparation</label>
-        <input
-          type="number"
-          class="form-control"
-          id="tps_preparation"
-          placeholder="30 (en minutes)"
-        />
+    <!-- Etapes Button -->
+    <div class="form-group">
+      <label for="tps_preparation" class="h3">Etapes</label>
+      <div class="input-group">
+        <textarea class="form-control" placeholder="Demander de l'aide"></textarea>
+        <div class="input-group-append">
+          <input class="input-group-text" type="button" value="Ajouter" />
+        </div>
       </div>
+    </div>
 
-      <!-- Ingrédients -->
-      <div class="form-group">
-        <label for="tps_preparation" class="h3">Ingrédients</label>
-        <input
-          type="number"
-          class="form-control"
-          id="tps_preparation"
-        />
+    <!-- Etapes Liste -->
+    <div class="mb-3">
+      <div class="card">
+        <ul class="list-group list-group-flush">
+          <li class="text-muted"><span>Coucou</span><input class="float-right input-group-text align-middle" value="X" type="button"/></li>
+        </ul>
       </div>
-
-      <!-- Etapes -->
-      <div class="form-group">
-        <label for="tps_preparation" class="h3">Etapes</label>
-        <input
-          type="number"
-          class="form-control"
-          id="tps_preparation"
-        />
-      </div>
-
-
-    </form>
+    </div>
+  </form>
 </template>
 
 <script>
 export default {
-    name: 'FormRecipe'
-}
+  name: "FormRecipe"
+};
 </script>
 
 <style>
-
 </style>

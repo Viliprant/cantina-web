@@ -1,6 +1,6 @@
 <template>
   <div class="container text-light mt-3">
-    <div v-if="myRecipe == null">
+    <div v-if="myRecipe.titre !== undefined">
       <h1>Recette : {{myRecipe.titre}}</h1>
       <p>Vous avez donc choisi de préparer le plat "Dustcrepe". Remontez vos manches et c'est parti pour de la gastronomie spaciale digne de Star Wars !</p>
       <p
