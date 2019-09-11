@@ -10,7 +10,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import 'bootstrap-vue/dist/bootstrap-vue.js';
-
+import Toasted from 'vue-toasted';
+ 
+Vue.use(Toasted)
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 
