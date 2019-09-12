@@ -8,6 +8,7 @@
         class="form-control"
         id="titre"
         placeholder="Ma nouvelle recette intergalactique"
+        v-model="dataRecipe.titre"
       />
     </div>
     <!-- Description Button -->
@@ -18,19 +19,20 @@
         class="form-control"
         id="description"
         placeholder="Un plat d'une autre galaxie..."
+        v-model="dataRecipe.description"
       />
     </div>
 
     <!-- Nombre de personnes Button -->
     <div class="form-group">
       <label for="nb_personnes" class="h3">Nombre de personnes</label>
-      <input type="number" class="form-control" id="nb_personnes" />
+      <input type="number" class="form-control" id="nb_personnes" v-model="dataRecipe.nbPersonnes"/>
     </div>
 
     <!-- Difficulté Button -->
     <div class="form-group">
       <label for="difficulte" class="h3">Difficulté</label>
-      <select class="custom-select" aria-label="difficulte" aria-describedby="difficulte">
+      <select class="custom-select" aria-label="difficulte" aria-describedby="difficulte" v-model="dataRecipe.difficulte">
         <option value="Padawan" selected>Padawan</option>
         <option value="Jedi">Jedi</option>
         <option value="Maitre">Maitre</option>
@@ -40,15 +42,15 @@
     <!-- Temps de préparation Button -->
     <div class="form-group">
       <label for="tps_preparation" class="h3">Temps de préparation</label>
-      <input type="number" class="form-control" id="tps_preparation" placeholder="30 (en minutes)" />
+      <input type="number" class="form-control" id="tps_preparation" placeholder="30 (en minutes)" v-model="dataRecipe.tpsPreparation"/>
     </div>
 
     <!-- Ingrédients Button -->
     <div class="form-group">
       <label for="tps_preparation" class="h3">Ingrédients</label>
       <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Quantité" />
-        <input type="text" class="form-control" placeholder="Nom de l'ingrédient" />
+        <input type="text" class="form-control" placeholder="Quantité" v-model="inputIngredient[0]"/>
+        <input type="text" class="form-control" placeholder="Nom de l'ingrédient" v-model="inputIngredient[1]"/>
         <div class="input-group-append">
           <input class="input-group-text" type="button" value="Ajouter" />
         </div>
@@ -70,7 +72,7 @@
     <div class="form-group">
       <label for="tps_preparation" class="h3">Etapes</label>
       <div class="input-group">
-        <textarea class="form-control" placeholder="Demander de l'aide"></textarea>
+        <textarea class="form-control" placeholder="Demander de l'aide" v-model="inputEtape"></textarea>
         <div class="input-group-append">
           <input class="input-group-text" type="button" value="Ajouter" />
         </div>
@@ -89,13 +91,25 @@
     </div>
 
 
-      <input type="submit" class="btn btn-outline-info btn-lg btn-block mr-2 mb-3 my-bg-white" value="Ajouter"/>
+      <input type="submit" class="btn btn-outline-info btn-lg btn-block mr-2 mb-3 my-bg-white" value="Ajouter la recette"/>
   </form>
 </template>
 
 <script>
 export default {
-  name: "FormRecipe"
+  name: "FormRecipe",
+  props:{
+    recipe: {
+      type: Object
+    }
+  },
+  data: function(){
+    return{
+      inputIngredient:[],
+      inputEtape: "",
+      dataRecipe: this.recipe
+    }
+  },
 };
 </script>
 

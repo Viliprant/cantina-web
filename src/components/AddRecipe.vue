@@ -1,7 +1,7 @@
 <template>
   <div class="container text-white pt-3">
     <h1 class="pb-3">Ajouter une recette</h1>
-    <FormRecipe/>
+    <FormRecipe :recipe="Recipe"/>
   </div>
 </template>
 
@@ -11,6 +11,19 @@ export default {
   name: "AddRecipe",
   components: {
     FormRecipe
+  },
+  data: function(){
+    return{
+      Recipe:{
+        titre: '',
+        description: '',
+        nbPersonnes: '',
+        difficulte: 'Padawan',
+        tpsPreparation: '',
+        ingredients: [],
+        etapes: []
+      }
+    }
   }
 };
 </script>
