@@ -83,7 +83,7 @@
             :key="name"
           >
             <span>{{`${value[0]} ${value[1]}`}}</span>
-            <input class="float-right btn btn-danger" value="X" type="button" />
+            <input class="float-right btn btn-danger" value="X" type="button" @click="removeIngredient(name)"/>
           </li>
         </ul>
       </div>
@@ -115,7 +115,7 @@
             :key="name"
           >
             <span>{{`${name+1}) ${value}`}}</span>
-            <input class="float-right btn btn-danger" value="X" type="button" />
+            <input class="float-right btn btn-danger" value="X" type="button" @click="removeEtape(name)"/>
           </li>
         </ul>
       </div>
@@ -159,6 +159,13 @@ export default {
       this.dataRecipe.etapes.push(this.inputEtape);
       this.inputEtape = '';
       this.$refs.etape.focus();
+    },
+    removeIngredient: function(index){
+      console.log(index);
+      this.dataRecipe.ingredients.splice(index,1);
+    },
+    removeEtape: function(index){
+      this.dataRecipe.etapes.splice(index,1);
     }
   }
 };
