@@ -26,13 +26,18 @@
     <!-- Nombre de personnes Button -->
     <div class="form-group">
       <label for="nb_personnes" class="h3">Nombre de personnes</label>
-      <input type="number" class="form-control" id="nb_personnes" v-model="dataRecipe.nbPersonnes"/>
+      <input type="number" class="form-control" id="nb_personnes" v-model="dataRecipe.nbPersonnes" />
     </div>
 
     <!-- Difficulté Button -->
     <div class="form-group">
       <label for="difficulte" class="h3">Difficulté</label>
-      <select class="custom-select" aria-label="difficulte" aria-describedby="difficulte" v-model="dataRecipe.difficulte">
+      <select
+        class="custom-select"
+        aria-label="difficulte"
+        aria-describedby="difficulte"
+        v-model="dataRecipe.difficulte"
+      >
         <option value="Padawan" selected>Padawan</option>
         <option value="Jedi">Jedi</option>
         <option value="Maitre">Maitre</option>
@@ -42,15 +47,26 @@
     <!-- Temps de préparation Button -->
     <div class="form-group">
       <label for="tps_preparation" class="h3">Temps de préparation</label>
-      <input type="number" class="form-control" id="tps_preparation" placeholder="30 (en minutes)" v-model="dataRecipe.tpsPreparation"/>
+      <input
+        type="number"
+        class="form-control"
+        id="tps_preparation"
+        placeholder="30 (en minutes)"
+        v-model="dataRecipe.tpsPreparation"
+      />
     </div>
 
     <!-- Ingrédients Button -->
     <div class="form-group">
       <label for="tps_preparation" class="h3">Ingrédients</label>
       <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Quantité" v-model="inputIngredient[0]"/>
-        <input type="text" class="form-control" placeholder="Nom de l'ingrédient" v-model="inputIngredient[1]"/>
+        <input type="text" class="form-control" placeholder="Quantité" v-model="inputIngredient[0]" />
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Nom de l'ingrédient"
+          v-model="inputIngredient[1]"
+        />
         <div class="input-group-append">
           <input class="input-group-text" type="button" value="Ajouter" />
         </div>
@@ -59,13 +75,23 @@
 
     <!-- Ingrédients Liste -->
     <div class="mb-3">
-      <div class="card">
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item text-muted"><span>Coucou</span><input class="float-right btn btn-danger" value="X" type="button"/></li>
-              <li class="list-group-item text-muted"><span>Coucou</span><input class="float-right btn btn-danger" value="X" type="button"/></li>
-              <li class="list-group-item text-muted"><span>Coucou</span><input class="float-right btn btn-danger" value="X" type="button"/></li>
-            </ul>
-          </div>
+      <div class="card" v-show="dataRecipe.ingredients.length >= 1">
+        <ul class="list-group list-group-flush">
+          <li
+            class="list-group-item text-muted"
+            v-for="(value, name) in dataRecipe.ingredients"
+            :key="name"
+          >
+            <span>{{`${value[0]} ${value[1]}`}}</span>
+            <input class="float-right btn btn-danger" value="X" type="button" />
+          </li>
+        </ul>
+      </div>
+      <div class="card" v-show="dataRecipe.ingredients.length < 1">
+        <div class="card-body text-dark text-center text-muted">
+          <p>Il n'y pas encore d'ingrédients</p>
+        </div>
+      </div>
     </div>
 
     <!-- Etapes Button -->
@@ -81,40 +107,53 @@
 
     <!-- Etapes Liste -->
     <div class="mb-3">
-      <div class="card">
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item text-muted"><span>Coucou</span><input class="float-right btn btn-danger" value="X" type="button"/></li>
-              <li class="list-group-item text-muted"><span>Coucou</span><input class="float-right btn btn-danger" value="X" type="button"/></li>
-              <li class="list-group-item text-muted"><span>Coucou</span><input class="float-right btn btn-danger" value="X" type="button"/></li>
-            </ul>
-          </div>
+      <div class="card" v-show="dataRecipe.etapes.length >= 1">
+        <ul class="list-group list-group-flush">
+          <li
+            class="list-group-item text-muted"
+            v-for="(value, name) in dataRecipe.etapes"
+            :key="name"
+          >
+            <span>{{`${name+1}) ${value}`}}</span>
+            <input class="float-right btn btn-danger" value="X" type="button" />
+          </li>
+        </ul>
+      </div>
+      <div class="card" v-show="dataRecipe.etapes.length < 1">
+        <div class="card-body text-dark text-center text-muted">
+          <p>Il n'y pas encore d'étapes</p>
+        </div>
+      </div>
     </div>
 
-
-      <input type="submit" class="btn btn-outline-info btn-lg btn-block mr-2 mb-3 my-bg-white" value="Ajouter la recette"/>
+    <input
+      type="submit"
+      class="btn btn-outline-info btn-lg btn-block mr-2 mb-3 my-bg-white"
+      value="Ajouter la recette"
+    />
   </form>
 </template>
 
 <script>
 export default {
   name: "FormRecipe",
-  props:{
+  props: {
     recipe: {
       type: Object
     }
   },
-  data: function(){
-    return{
-      inputIngredient:[],
+  data: function() {
+    return {
+      inputIngredient: [],
       inputEtape: "",
       dataRecipe: this.recipe
-    }
-  },
+    };
+  }
 };
 </script>
 
 <style scoped>
-.my-bg-white{
+.my-bg-white {
   background-color: white;
 }
 </style>
