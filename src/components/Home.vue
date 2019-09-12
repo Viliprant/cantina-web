@@ -4,7 +4,7 @@
     <p class="text-white">Voici les recettes pour de bons petits plats !</p>
     <SearchBarRecipe @useFilter="applyFilter"/>
     <div class="container-card">
-      <RecipeCard class="m-3" v-for="recipe in listRecipesFiltered" :key="recipe.id" :dataRecipe="recipe"/>
+      <RecipeCard class="m-3" v-for="recipe in listRecipesFiltered" :key="recipe.id" :dataRecipe="recipe" @clickToRemove="removeRecipe"/>
     </div>
   </div>
 </template>
@@ -62,7 +62,25 @@ export default {
         return true;
 
       })
-    }
+    },
+    removeRecipe: function(idRecipe){
+      data.removeRecipe(idRecipe)
+        .then(()=>{
+          this.removeFromList(idRecipe)
+          this.$toasted.success("La recette a été supprimé.");
+        })
+        .catch(()=>{
+          this.$toasted.error("La recette n'a pas pu être supprimé.");
+        })
+    },
+    removeFromList : function(idRecipe){
+      for (let keyRecipe in this.listRecipes) {
+        if(this.listRecipes[keyRecipe].id === idRecipe)
+        {
+          this.listRecipes.splice(keyRecipe,1);
+        }
+      }
+    }   
   }
 };
 </script>

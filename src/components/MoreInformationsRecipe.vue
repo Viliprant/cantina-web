@@ -73,7 +73,7 @@
       <div class="card mt-3">
         <div class="card-footer text-center">
           <a href="#" class="btn btn-outline-info btn-lg btn-block mr-2">Modifier</a>
-          <a href="#" class="btn btn-outline-danger btn-lg btn-block">Supprimer</a>
+          <a href="#" class="btn btn-outline-danger btn-lg btn-block" @click.prevent="removeRecipe(myRecipe.id)">Supprimer</a>
         </div>
       </div>
     </div>
@@ -120,6 +120,17 @@ export default {
     DEFAULT_PHOTO: function() {
       // require sinon il ne trouve pas la photo
       return require("../assets/default-image-recipe-Miam.jpg");
+    }
+  },
+  methods: {
+    removeRecipe: function(idRecipe){
+      data.removeRecipe(idRecipe)
+        .then(()=>{
+          this.$router.push({ path: '/' })
+        })
+        .catch(()=>{
+          this.$toasted.error("La recette n'a pas pu être supprimé.");
+        })
     }
   }
 };

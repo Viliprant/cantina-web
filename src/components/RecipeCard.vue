@@ -13,7 +13,7 @@
     </ul>
     <div class="card-footer text-center">
       <a href="#" class="btn btn-outline-info mr-2">Modifier</a>
-      <a href="#" class="btn btn-outline-danger">Supprimer</a>
+      <a href="#" class="btn btn-outline-danger" @click.prevent="clickToRemove">Supprimer</a>
     </div>
   </div>
 </template>
@@ -59,6 +59,11 @@ export default {
     DEFAULT_PHOTO: function(){
       // require sinon il ne trouve pas la photo
       return require('../assets/default-image-recipe-Miam.jpg');
+    }
+  },
+  methods: {
+    clickToRemove : function(){
+      this.$emit("clickToRemove", this.detailsRecipe.id);
     }
   }
 };

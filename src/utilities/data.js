@@ -27,10 +27,20 @@ export default{
     },
     sendRecipe: function (recipeObj) {
         return axios.post(`${API_ENDPOINT}/api/recipes`, recipeObj)
-            .then(response => response.data)
+            .then(response => response)
             .catch(function (error) {
                 let errMessage = (error.response) ? `${error.response.statusText} : ${error.response.data.message}` : `${error.response.statusText} : ${error.response.data.message}`;
                 return Promise.reject(new Error(errMessage));
             });
+    },
+    removeRecipe : (id) => {
+        return axios.delete(`${API_ENDPOINT}/api/recipe/${id}`)
+            .then(function (response) {
+                return response;
+            })
+            .catch(function (error) {
+                let errMessage = (error.response) ? `${error.response.statusText} : ${error.response.data.message}` : `${error.response.statusText} : ${error.response.data.message}`;
+                return Promise.reject(new Error(errMessage));
+            })
     }
 }
