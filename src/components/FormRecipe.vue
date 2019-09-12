@@ -60,7 +60,7 @@
     <div class="form-group">
       <label for="tps_preparation" class="h3">Ingrédients</label>
       <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Quantité" v-model="inputIngredient[0]" />
+        <input type="text" class="form-control" placeholder="Quantité" v-model="inputIngredient[0]" ref="ingredient1"/>
         <input
           type="text"
           class="form-control"
@@ -68,7 +68,7 @@
           v-model="inputIngredient[1]"
         />
         <div class="input-group-append">
-          <input class="input-group-text" type="button" value="Ajouter" />
+          <input class="input-group-text" type="button" value="Ajouter" @click="addIngredient"/>
         </div>
       </div>
     </div>
@@ -98,9 +98,9 @@
     <div class="form-group">
       <label for="tps_preparation" class="h3">Etapes</label>
       <div class="input-group">
-        <textarea class="form-control" placeholder="Demander de l'aide" v-model="inputEtape"></textarea>
+        <textarea class="form-control" placeholder="Demander de l'aide" v-model="inputEtape" ref="etape"></textarea>
         <div class="input-group-append">
-          <input class="input-group-text" type="button" value="Ajouter" />
+          <input class="input-group-text" type="button" value="Ajouter" @click="addEtape"/>
         </div>
       </div>
     </div>
@@ -148,6 +148,18 @@ export default {
       inputEtape: "",
       dataRecipe: this.recipe
     };
+  },
+  methods:{
+    addIngredient: function(){
+      this.dataRecipe.ingredients.push(this.inputIngredient);
+      this.inputIngredient = [];
+      this.$refs.ingredient1.focus();
+    },
+    addEtape: function(){
+      this.dataRecipe.etapes.push(this.inputEtape);
+      this.inputEtape = '';
+      this.$refs.etape.focus();
+    }
   }
 };
 </script>
