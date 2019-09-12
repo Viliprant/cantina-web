@@ -11,6 +11,9 @@ import 'bootstrap/dist/js/bootstrap.js';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import 'bootstrap-vue/dist/bootstrap-vue.js';
 import Toasted from 'vue-toasted';
+import Vuelidate from 'vuelidate'
+
+Vue.use(Vuelidate)
  
 Vue.use(Toasted,{
   duration: 4000

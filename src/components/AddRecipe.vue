@@ -1,6 +1,7 @@
 <template>
   <div class="container text-white pt-3">
     <h1 class="pb-3">Ajouter une recette</h1>
+    <p> Les champs accompagnés du symbole * sont obligatoires.</p>
     <FormRecipe :recipe="Recipe"/>
   </div>
 </template>
