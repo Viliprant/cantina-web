@@ -24,5 +24,13 @@ export default{
                 let errMessage = (error.response) ? `${error.response.statusText} : ${error.response.data.message}` : `${error.response.statusText} : ${error.response.data.message}`;
                 return Promise.reject(new Error(errMessage));
             })
+    },
+    sendRecipe: function (recipeObj) {
+        return axios.post(`${API_ENDPOINT}/api/recipes`, recipeObj)
+            .then(response => response.data)
+            .catch(function (error) {
+                let errMessage = (error.response) ? `${error.response.statusText} : ${error.response.data.message}` : `${error.response.statusText} : ${error.response.data.message}`;
+                return Promise.reject(new Error(errMessage));
+            });
     }
 }

@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="addNewRecipe">
+  <form @submit.prevent="formValidated">
     <!-- Titre Button -->
     <div class="form-group">
       <label for="titre" class="h3">Titre*</label>
@@ -30,8 +30,8 @@
     <!-- Nombre de personnes Button -->
     <div class="form-group">
       <label for="nb_personnes" class="h3">Nombre de personnes*</label>
-      <input type="number" class="form-control" id="nb_personnes" v-model="dataRecipe.nbPersonnes" @blur="$v.dataRecipe.nbPersonnes.$touch()"/>
-      <span v-if="$v.dataRecipe.nbPersonnes.$dirty && $v.dataRecipe.nbPersonnes.$invalid">Il faut indiquer un nombre de personnes pour pouvoir ajouter votre recette.</span>
+      <input type="number" class="form-control" id="nb_personnes" v-model.number="dataRecipe.personnes" @blur="$v.dataRecipe.personnes.$touch()"/>
+      <span v-if="$v.dataRecipe.personnes.$dirty && $v.dataRecipe.personnes.$invalid">Il faut indiquer un nombre de personnes pour pouvoir ajouter votre recette.</span>
     </div>
 
     <!-- Difficulté Button -->
@@ -41,26 +41,26 @@
         class="custom-select"
         aria-label="difficulte"
         aria-describedby="difficulte"
-        v-model="dataRecipe.difficulte"
+        v-model="dataRecipe.niveau"
       >
-        <option value="Padawan" selected>Padawan</option>
-        <option value="Jedi">Jedi</option>
-        <option value="Maitre">Maitre</option>
+        <option value="padawan" selected>Padawan</option>
+        <option value="jedi">Jedi</option>
+        <option value="maitre">Maitre</option>
       </select>
     </div>
 
     <!-- Temps de préparation Button -->
     <div class="form-group">
-      <label for="tps_preparation" class="h3">Temps de préparation*</label>
+      <label for="temps_preparation" class="h3">Temps de préparation*</label>
       <input
         type="number"
         class="form-control"
-        id="tps_preparation"
+        id="temps_preparation"
         placeholder="30 (en minutes)"
-        v-model="dataRecipe.tpsPreparation"
-        @blur="$v.dataRecipe.tpsPreparation.$touch()"
+        v-model.number="dataRecipe.tempsPreparation"
+        @blur="$v.dataRecipe.tempsPreparation.$touch()"
       />
-      <span v-if="$v.dataRecipe.tpsPreparation.$dirty && $v.dataRecipe.tpsPreparation.$invalid">Il faut indiquer un temps de préparation pour pouvoir ajouter votre recette.</span>
+      <span v-if="$v.dataRecipe.tempsPreparation.$dirty && $v.dataRecipe.tempsPreparation.$invalid">Il faut indiquer un temps de préparation pour pouvoir ajouter votre recette.</span>
     </div>
 
     <!-- Ingrédients Button -->
@@ -212,14 +212,15 @@ export default {
     removeEtape: function(index) {
       this.dataRecipe.etapes.splice(index, 1);
     },
-    addNewRecipe: function() {
+    formValidated: function() {
       if (this.$v.dataRecipe.$invalid) 
       {
-        this.$toasted.error("Non validé");
+        this.$toasted.error("Le formulaire est incorrect");
         return this.$v.dataRecipe.$touch();
       }
       else{
-        this.$toasted.success("Validé");
+        this.$toasted.success("Le formulaire est correcte");
+        this.$emit("successValidation", this.dataRecipe);
       }
     }
   },
@@ -227,9 +228,9 @@ export default {
     dataRecipe: {
       titre: { required },
       description: { required },
-      nbPersonnes: { required, numeric },
-      difficulte: { required },
-      tpsPreparation: { required, numeric },
+      personnes: { required, numeric },
+      niveau: { required },
+      tempsPreparation: { required, numeric },
       ingredients: { required, minLength:minLength(1) },
       etapes: { required, minLength:minLength(1) },
       photo: { url }
