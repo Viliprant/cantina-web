@@ -21,7 +21,8 @@ export default {
         difficulte: 'Padawan',
         tpsPreparation: '',
         ingredients: [],
-        etapes: []
+        etapes: [],
+        photo: ''
       }
     }
   }
