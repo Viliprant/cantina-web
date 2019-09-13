@@ -50,7 +50,7 @@
               <span class="btn btn-outline-light" id>Nombre de personne</span>
             </div>
             <input
-              type="text"
+              type="number"
               class="form-control"
               placeholder="3"
               v-model="parametersSearch.nbPersonnes[0]"
@@ -69,7 +69,7 @@
               <span class="btn btn-outline-light" id="temps_de_preparation">Temps de préparation</span>
             </div>
             <input
-              type="text"
+              type="number"
               class="form-control"
               placeholder="Veuillez saisir une durée (en minutes)"
               aria-label="temps_de_preparation"
