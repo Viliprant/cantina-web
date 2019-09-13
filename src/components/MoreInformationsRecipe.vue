@@ -72,7 +72,7 @@
 
       <div class="card mt-3">
         <div class="card-footer text-center">
-          <a href="#" class="btn btn-outline-info btn-lg btn-block mr-2">Modifier</a>
+          <router-link :to="`/recette/edit/${myRecipe.id}`" class="btn btn-outline-info btn-lg btn-block mr-2">Modifier</router-link>
           <a href="#" class="btn btn-outline-danger btn-lg btn-block" @click.prevent="removeRecipe(myRecipe.id)">Supprimer</a>
         </div>
       </div>

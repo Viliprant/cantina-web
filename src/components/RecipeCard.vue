@@ -12,7 +12,7 @@
       <li class="list-group-item text-muted">Temps de préparation : <span class="font-weight-bold">{{detailsRecipe.tempsPreparation | formatTpsPreparation}}</span></li>
     </ul>
     <div class="card-footer text-center">
-      <a href="#" class="btn btn-outline-info mr-2">Modifier</a>
+      <router-link :to="`/recette/edit/${detailsRecipe.id}`" class="btn btn-outline-info mr-2">Modifier</router-link>
       <a href="#" class="btn btn-outline-danger" @click.prevent="clickToRemove">Supprimer</a>
     </div>
   </div>

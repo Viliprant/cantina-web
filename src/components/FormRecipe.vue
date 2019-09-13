@@ -8,10 +8,12 @@
         class="form-control"
         id="titre"
         placeholder="Ma nouvelle recette intergalactique"
-        v-model="dataRecipe.titre"
-        @blur="$v.dataRecipe.titre.$touch()"
+        v-model="recipe.titre"
+        @blur="$v.recipe.titre.$touch()"
       />
-      <span v-if="$v.dataRecipe.titre.$dirty && $v.dataRecipe.titre.$invalid">Il faut indiquer un titre pour pouvoir ajouter votre recette.</span>
+      <span
+        v-if="$v.recipe.titre.$dirty && $v.recipe.titre.$invalid"
+      >Il faut indiquer un titre pour pouvoir ajouter votre recette.</span>
     </div>
     <!-- Description Button -->
     <div class="form-group">
@@ -21,17 +23,27 @@
         class="form-control"
         id="description"
         placeholder="Un plat d'une autre galaxie..."
-        v-model="dataRecipe.description"
-        @blur="$v.dataRecipe.description.$touch()"
+        v-model="recipe.description"
+        @blur="$v.recipe.description.$touch()"
       />
-      <span v-if="$v.dataRecipe.description.$dirty && $v.dataRecipe.description.$invalid">Il faut indiquer une description pour pouvoir ajouter votre recette.</span>
+      <span
+        v-if="$v.recipe.description.$dirty && $v.recipe.description.$invalid"
+      >Il faut indiquer une description pour pouvoir ajouter votre recette.</span>
     </div>
 
     <!-- Nombre de personnes Button -->
     <div class="form-group">
       <label for="nb_personnes" class="h3">Nombre de personnes*</label>
-      <input type="number" class="form-control" id="nb_personnes" v-model.number="dataRecipe.personnes" @blur="$v.dataRecipe.personnes.$touch()"/>
-      <span v-if="$v.dataRecipe.personnes.$dirty && $v.dataRecipe.personnes.$invalid">Il faut indiquer un nombre de personnes pour pouvoir ajouter votre recette.</span>
+      <input
+        type="number"
+        class="form-control"
+        id="nb_personnes"
+        v-model.number="recipe.personnes"
+        @blur="$v.recipe.personnes.$touch()"
+      />
+      <span
+        v-if="$v.recipe.personnes.$dirty && $v.recipe.personnes.$invalid"
+      >Il faut indiquer un nombre de personnes pour pouvoir ajouter votre recette.</span>
     </div>
 
     <!-- Difficulté Button -->
@@ -41,7 +53,7 @@
         class="custom-select"
         aria-label="difficulte"
         aria-describedby="difficulte"
-        v-model="dataRecipe.niveau"
+        v-model="recipe.niveau"
       >
         <option value="padawan" selected>Padawan</option>
         <option value="jedi">Jedi</option>
@@ -57,10 +69,12 @@
         class="form-control"
         id="temps_preparation"
         placeholder="30 (en minutes)"
-        v-model.number="dataRecipe.tempsPreparation"
-        @blur="$v.dataRecipe.tempsPreparation.$touch()"
+        v-model.number="recipe.tempsPreparation"
+        @blur="$v.recipe.tempsPreparation.$touch()"
       />
-      <span v-if="$v.dataRecipe.tempsPreparation.$dirty && $v.dataRecipe.tempsPreparation.$invalid">Il faut indiquer un temps de préparation pour pouvoir ajouter votre recette.</span>
+      <span
+        v-if="$v.recipe.tempsPreparation.$dirty && $v.recipe.tempsPreparation.$invalid"
+      >Il faut indiquer un temps de préparation pour pouvoir ajouter votre recette.</span>
     </div>
 
     <!-- Ingrédients Button -->
@@ -88,11 +102,11 @@
 
     <!-- Ingrédients Liste -->
     <div class="mb-3">
-      <div class="card" v-show="dataRecipe.ingredients.length >= 1">
+      <div class="card" v-show="recipe.ingredients && recipe.ingredients.length >= 1">
         <ul class="list-group list-group-flush">
           <li
             class="list-group-item text-muted"
-            v-for="(value, name) in dataRecipe.ingredients"
+            v-for="(value, name) in recipe.ingredients"
             :key="name"
           >
             <span>{{`${value[0]} ${value[1]}`}}</span>
@@ -105,12 +119,14 @@
           </li>
         </ul>
       </div>
-      <div class="card" v-show="dataRecipe.ingredients.length < 1">
+      <div class="card" v-show="recipe.ingredients && recipe.ingredients.length < 1">
         <div class="card-body text-dark text-center text-muted">
           <p>Il n'y pas encore d'ingrédients</p>
         </div>
       </div>
-      <span v-if="$v.dataRecipe.ingredients.$dirty && $v.dataRecipe.ingredients.$invalid">Il faut un ingrédient au minimum pour pouvoir ajouter votre recette.</span>
+      <span
+        v-if="$v.recipe.ingredients.$dirty && $v.recipe.ingredients.$invalid"
+      >Il faut un ingrédient au minimum pour pouvoir ajouter votre recette.</span>
     </div>
 
     <!-- Etapes Button -->
@@ -131,13 +147,9 @@
 
     <!-- Etapes Liste -->
     <div class="mb-3">
-      <div class="card" v-show="dataRecipe.etapes.length >= 1">
+      <div class="card" v-show="recipe.etapes && recipe.etapes.length >= 1">
         <ul class="list-group list-group-flush">
-          <li
-            class="list-group-item text-muted"
-            v-for="(value, name) in dataRecipe.etapes"
-            :key="name"
-          >
+          <li class="list-group-item text-muted" v-for="(value, name) in recipe.etapes" :key="name">
             <span>{{`${name+1}) ${value}`}}</span>
             <input
               class="float-right btn btn-danger"
@@ -148,12 +160,14 @@
           </li>
         </ul>
       </div>
-      <div class="card" v-show="dataRecipe.etapes.length < 1">
+      <div class="card" v-show="recipe.etapes &&recipe.etapes.length < 1">
         <div class="card-body text-dark text-center text-muted">
           <p>Il n'y pas encore d'étapes</p>
         </div>
       </div>
-      <span v-if="$v.dataRecipe.etapes.$dirty && $v.dataRecipe.etapes.$invalid">Il faut une étape au minimum pour pouvoir ajouter votre recette.</span>
+      <span
+        v-if="$v.recipe.etapes.$dirty && $v.recipe.etapes.$invalid"
+      >Il faut une étape au minimum pour pouvoir ajouter votre recette.</span>
     </div>
 
     <!-- URL PHOTO -->
@@ -164,76 +178,100 @@
         class="form-control"
         id="urlPhoto"
         placeholder="http:// ou https://"
-        v-model="dataRecipe.photo"
-        @blur="$v.dataRecipe.photo.$touch()"
+        v-model="recipe.photo"
+        @blur="$v.recipe.photo.$touch()"
       />
-      <span v-if="$v.dataRecipe.photo.$invalid">L'URL est invalide.</span>
+      <span v-if="$v.recipe.photo.$invalid">L'URL est invalide.</span>
     </div>
 
     <input
+      v-if="!recipe.id"
       type="submit"
       class="btn btn-outline-info btn-lg btn-block mr-2 mb-3 my-bg-white"
       value="Ajouter la recette"
+    />
+    <input
+      v-if="recipe.id"
+      type="submit"
+      class="btn btn-outline-info btn-lg btn-block mr-2 mb-3 my-bg-white"
+      value="Editer la recette"
     />
   </form>
 </template>
 
 <script>
-import { required, numeric, url,minLength } from "vuelidate/lib/validators";
+import { required, numeric, minLength} from "vuelidate/lib/validators";
 
 export default {
   name: "FormRecipe",
   props: {
     recipe: {
-      type: Object
+      type: Object,
+      default: function() {
+        return {
+          titre: "",
+          description: "",
+          personnes: null,
+          niveau: "padawan",
+          tempsPreparation: null,
+          ingredients: [],
+          etapes: [],
+          photo: ""
+        };
+      }
     }
   },
   data: function() {
     return {
       inputIngredient: [],
-      inputEtape: "",
-      dataRecipe: this.recipe
+      inputEtape: ""
     };
   },
   methods: {
     addIngredient: function() {
-      this.dataRecipe.ingredients.push(this.inputIngredient);
+      this.recipe.ingredients.push(this.inputIngredient);
       this.inputIngredient = [];
       this.$refs.ingredient1.focus();
     },
     addEtape: function() {
-      this.dataRecipe.etapes.push(this.inputEtape);
+      this.recipe.etapes.push(this.inputEtape);
       this.inputEtape = "";
       this.$refs.etape.focus();
     },
     removeIngredient: function(index) {
-      this.dataRecipe.ingredients.splice(index, 1);
+      this.recipe.ingredients.splice(index, 1);
     },
     removeEtape: function(index) {
-      this.dataRecipe.etapes.splice(index, 1);
+      this.recipe.etapes.splice(index, 1);
     },
     formValidated: function() {
-      if (this.$v.dataRecipe.$invalid) 
-      {
+      if (this.$v.recipe.$invalid) {
         this.$toasted.error("Le formulaire est incorrect");
-        return this.$v.dataRecipe.$touch();
-      }
-      else{
+        return this.$v.recipe.$touch();
+      } else {
         this.$toasted.success("Le formulaire est correcte");
-        this.$emit("successValidation", this.dataRecipe);
+        this.$emit("successValidation", this.recipe);
       }
     }
   },
   validations: {
-    dataRecipe: {
+    recipe: {
       titre: { required },
       description: { required },
       personnes: { required, numeric },
       niveau: { required },
       tempsPreparation: { required, numeric },
-      ingredients: { required, minLength:minLength(1) },
-      etapes: { required, minLength:minLength(1) },
-      photo: { url }
+      ingredients: { required, minLength: minLength(1) },
+      etapes: { required, minLength: minLength(1) },
+      photo: {
+        verifyUrl : function() {
+          if(this.recipe.photo)
+          {
+            return this.recipe.photo.startsWith('http://') || this.recipe.photo.startsWith('https://');
+          }
+          return true;
+        }
+      }
     }
   }
 };

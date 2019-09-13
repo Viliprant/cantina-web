@@ -42,5 +42,15 @@ export default{
                 let errMessage = (error.response) ? `${error.response.statusText} : ${error.response.data.message}` : `${error.response.statusText} : ${error.response.data.message}`;
                 return Promise.reject(new Error(errMessage));
             })
+    },
+    updateRecipe : (recipeObj) => {
+        return axios.put(`${API_ENDPOINT}/api/recipe/${recipeObj.id}`,recipeObj)
+            .then(function (response) {
+                return response;
+            })
+            .catch(function (error) {
+                let errMessage = (error.response) ? `${error.response.statusText} : ${error.response.data.message}` : `${error.response.statusText} : ${error.response.data.message}`;
+                return Promise.reject(new Error(errMessage));
+            })
     }
 }

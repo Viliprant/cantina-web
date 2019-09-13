@@ -2,7 +2,7 @@
   <div class="container text-white pt-3">
     <h1 class="pb-3">Ajouter une recette</h1>
     <p> Les champs accompagnés du symbole * sont obligatoires.</p>
-    <FormRecipe :recipe="Recipe" @successValidation="sendRecipe"/>
+    <FormRecipe @successValidation="sendRecipe"/>
   </div>
 </template>
 
@@ -17,7 +17,7 @@ export default {
   },
   data: function(){
     return{
-      Recipe:{
+      recipe:{
         titre: '',
         description: '',
         personnes: null,
