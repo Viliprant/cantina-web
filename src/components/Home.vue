@@ -2,9 +2,15 @@
   <div class="container py-3">
     <h1 class="text-white">Liste des recettes</h1>
     <p class="text-white">Voici les recettes pour de bons petits plats !</p>
-    <SearchBarRecipe @useFilter="applyFilter"/>
+    <SearchBarRecipe @useFilter="applyFilter" />
     <div class="container-card">
-      <RecipeCard class="m-3" v-for="recipe in listRecipesFiltered" :key="recipe.id" :dataRecipe="recipe" @clickToRemove="removeRecipe"/>
+      <RecipeCard
+        class="m-3"
+        v-for="recipe in listRecipesFiltered"
+        :key="recipe.id"
+        :dataRecipe="recipe"
+        @clickToRemove="removeRecipe"
+      />
     </div>
   </div>
 </template>
@@ -24,63 +30,87 @@ export default {
   data: function() {
     return {
       listRecipes: [],
-      listRecipesFiltered:[]
+      listRecipesFiltered: []
     };
   },
   created: function() {
-    data.getAllRecipes().then(res => {
-      this.listRecipes = res.data;
-      this.listRecipesFiltered = res.data;
-    }).catch((error)=>{
-      this.$toasted.error(error.message);
-    });
+    data
+      .getAllRecipes()
+      .then(res => {
+        this.listRecipes = res.data;
+        this.listRecipesFiltered = res.data;
+      })
+      .catch(error => {
+        this.$toasted.error(error.message);
+      });
   },
-  methods:{
-    applyFilter: function(paramsFilter){
-      this.$toasted.show(`${paramsFilter.titre},<br> ${paramsFilter.difficulte},<br> ${paramsFilter.tpsPreparation},<br>${paramsFilter.nbPersonnes}`);
-      this.listRecipesFiltered = this.listRecipes.filter((myRecipe)=>{
-        let difficulte = ""
-        if(paramsFilter.difficulte.toLowerCase() !== "tous")
-        {
+  methods: {
+    applyFilter: function(paramsFilter) {
+      this.$toasted.show(
+        `${paramsFilter.titre},<br> ${paramsFilter.difficulte},<br> ${paramsFilter.tpsPreparation},<br>${paramsFilter.nbPersonnes}`
+      );
+      this.listRecipesFiltered = this.listRecipes.filter(myRecipe => {
+        let difficulte = "";
+        if (paramsFilter.difficulte.toLowerCase() !== "tous") {
           difficulte = paramsFilter.difficulte.toLowerCase();
         }
         //Titre
-        if(!myRecipe.titre.toLowerCase().includes(paramsFilter.titre.toLowerCase().trim())) {return false;}
+        if (
+          !myRecipe.titre
+            .toLowerCase()
+            .includes(paramsFilter.titre.toLowerCase().trim())
+        ) {
+          return false;
+        }
         //Difficulté
-        if(!myRecipe.niveau.toLowerCase().includes(difficulte)) {return false;}
+        if (!myRecipe.niveau.toLowerCase().includes(difficulte)) {
+          return false;
+        }
         //Temps de préparation
-        if(myRecipe.tempsPreparation > paramsFilter.tpsPreparation && paramsFilter.tpsPreparation != "" ) {return false;}
+        if (
+          myRecipe.tempsPreparation > paramsFilter.tpsPreparation &&
+          paramsFilter.tpsPreparation != ""
+        ) {
+          return false;
+        }
         //Nombre de personne minimum
-        if(myRecipe.personnes < paramsFilter.nbPersonnes[0] &&
-           paramsFilter.nbPersonnes[0] !== "")
-           {return false;}
+        if (
+          myRecipe.personnes < paramsFilter.nbPersonnes[0] &&
+          paramsFilter.nbPersonnes[0] !== ""
+        ) {
+          return false;
+        }
         //Nombre de personne maximum
-        if(myRecipe.personnes > paramsFilter.nbPersonnes[1] &&
-           paramsFilter.nbPersonnes[1] !== "")
-           {return false;}
+        if (
+          myRecipe.personnes > paramsFilter.nbPersonnes[1] &&
+          paramsFilter.nbPersonnes[1] !== ""
+        ) {
+          return false;
+        }
 
         return true;
-
-      })
+      });
     },
-    removeRecipe: function(idRecipe){
-      data.removeRecipe(idRecipe)
-        .then(()=>{
-          this.removeFromList(idRecipe)
-          this.$toasted.success("La recette a été supprimé.");
-        })
-        .catch(()=>{
-          this.$toasted.error("La recette n'a pas pu être supprimé.");
-        })
+    removeRecipe: function(idRecipe) {
+      if (confirm("Etes-vous sûr de vouloir supprimer la recette ?")) {
+        data
+          .removeRecipe(idRecipe)
+          .then(() => {
+            this.removeFromList(idRecipe);
+            this.$toasted.success("La recette a été supprimé.");
+          })
+          .catch(() => {
+            this.$toasted.error("La recette n'a pas pu être supprimé.");
+          });
+      }
     },
-    removeFromList : function(idRecipe){
+    removeFromList: function(idRecipe) {
       for (let keyRecipe in this.listRecipes) {
-        if(this.listRecipes[keyRecipe].id === idRecipe)
-        {
-          this.listRecipes.splice(keyRecipe,1);
+        if (this.listRecipes[keyRecipe].id === idRecipe) {
+          this.listRecipes.splice(keyRecipe, 1);
         }
       }
-    }   
+    }
   }
 };
 </script>

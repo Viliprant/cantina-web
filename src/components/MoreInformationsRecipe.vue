@@ -72,8 +72,15 @@
 
       <div class="card mt-3">
         <div class="card-footer text-center">
-          <router-link :to="`/recette/edit/${myRecipe.id}`" class="btn btn-outline-info btn-lg btn-block mr-2">Modifier</router-link>
-          <a href="#" class="btn btn-outline-danger btn-lg btn-block" @click.prevent="removeRecipe(myRecipe.id)">Supprimer</a>
+          <router-link
+            :to="`/recette/edit/${myRecipe.id}`"
+            class="btn btn-outline-info btn-lg btn-block mr-2"
+          >Modifier</router-link>
+          <a
+            href="#"
+            class="btn btn-outline-danger btn-lg btn-block"
+            @click.prevent="removeRecipe(myRecipe.id)"
+          >Supprimer</a>
         </div>
       </div>
     </div>
@@ -110,11 +117,14 @@ export default {
     }
   },
   created: function() {
-    data.getOneRecipe(this.$route.params.id).then(res => {
-      this.myRecipe = res.data;
-    }).catch((error)=>{
-      this.$toasted.error(error.message);
-    });
+    data
+      .getOneRecipe(this.$route.params.id)
+      .then(res => {
+        this.myRecipe = res.data;
+      })
+      .catch(error => {
+        this.$toasted.error(error.message);
+      });
   },
   computed: {
     DEFAULT_PHOTO: function() {
@@ -123,14 +133,17 @@ export default {
     }
   },
   methods: {
-    removeRecipe: function(idRecipe){
-      data.removeRecipe(idRecipe)
-        .then(()=>{
-          this.$router.push({ path: '/' })
-        })
-        .catch(()=>{
-          this.$toasted.error("La recette n'a pas pu être supprimé.");
-        })
+    removeRecipe: function(idRecipe) {
+      if (confirm("Etes-vous sûr de vouloir supprimer la recette ?")) {
+        data
+          .removeRecipe(idRecipe)
+          .then(() => {
+            this.$router.push({ path: "/" });
+          })
+          .catch(() => {
+            this.$toasted.error("La recette n'a pas pu être supprimé.");
+          });
+      }
     }
   }
 };

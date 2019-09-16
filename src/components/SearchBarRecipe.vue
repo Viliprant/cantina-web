@@ -111,6 +111,7 @@ export default {
     },
     verifyParameters: function() {
       let validation = true;
+      // Nombre de personne
       if (
         (Number.isNaN(parseInt(this.parametersSearch.nbPersonnes[0])) &&
           this.parametersSearch.nbPersonnes[0] !== "") ||
@@ -122,6 +123,7 @@ export default {
         );
         validation = false;
       }
+      // Temps de préparation
       if (
         Number.isNaN(parseInt(this.parametersSearch.tpsPreparation)) &&
         this.parametersSearch.tpsPreparation !== ""
