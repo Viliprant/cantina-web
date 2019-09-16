@@ -284,4 +284,13 @@ export default {
 .custom-file-input:lang(en) ~ .custom-file-label::after {
   content: "Parcourir";
 }
+.input-group > .form-control:not(:first-child){
+  border-top-left-radius: inherit;
+  border-bottom-left-radius: inherit;
+}
+.input-group > .form-control:not(:last-child){
+  border-top-left-radius: inherit;
+  border-bottom-left-radius: inherit;
+}
+
 </style>
