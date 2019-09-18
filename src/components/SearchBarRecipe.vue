@@ -17,7 +17,7 @@
               <span class="btn btn-outline-light" id="titre">Titre</span>
             </div>
             <input
-              type="text"
+              type="number"
               class="form-control"
               placeholder="Midi-chlorien"
               aria-label="titre"
@@ -37,7 +37,7 @@
               aria-describedby="difficulte"
               v-model="parametersSearch.difficulte"
             >
-              <option value="Tous" selected>Tous</option>
+              <option value="Toutes" selected>Toutes</option>
               <option value="Padawan">Padawan</option>
               <option value="Jedi">Jedi</option>
               <option value="Maitre">Maitre</option>
@@ -97,7 +97,7 @@ export default {
     return {
       parametersSearch: {
         titre: "",
-        difficulte: "Tous",
+        difficulte: "Toutes",
         tpsPreparation: "",
         nbPersonnes: ["",""]
       }

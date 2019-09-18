@@ -46,12 +46,9 @@ export default {
   },
   methods: {
     applyFilter: function(paramsFilter) {
-      this.$toasted.show(
-        `${paramsFilter.titre},<br> ${paramsFilter.difficulte},<br> ${paramsFilter.tpsPreparation},<br>${paramsFilter.nbPersonnes}`
-      );
       this.listRecipesFiltered = this.listRecipes.filter(myRecipe => {
         let difficulte = "";
-        if (paramsFilter.difficulte.toLowerCase() !== "tous") {
+        if (paramsFilter.difficulte.toLowerCase() !== "toutes") {
           difficulte = paramsFilter.difficulte.toLowerCase();
         }
         //Titre
@@ -97,10 +94,10 @@ export default {
           .removeRecipe(idRecipe)
           .then(() => {
             this.removeFromList(idRecipe);
-            this.$toasted.success("La recette a été supprimé.");
+            this.$toasted.success("La recette a été supprimée.");
           })
           .catch(() => {
-            this.$toasted.error("La recette n'a pas pu être supprimé.");
+            this.$toasted.error("La recette n'a pas pu être supprimée.");
           });
       }
     },
